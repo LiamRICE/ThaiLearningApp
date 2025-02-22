@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://diifuvv4b74ip"]
+
+[ext_resource type="Script" path="res://scripts/practice_screen.gd" id="1_dedy7"]
+
+[node name="PracticeScreen" type="CanvasLayer"]
+script = ExtResource("1_dedy7")

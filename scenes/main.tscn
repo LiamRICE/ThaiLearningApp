@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://brwadq4hdeq03"]
+[gd_scene load_steps=5 format=3 uid="uid://brwadq4hdeq03"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_wjjd6"]
 [ext_resource type="PackedScene" uid="uid://deou67qane2fy" path="res://scenes/screens.tscn" id="2_0wji4"]
+[ext_resource type="PackedScene" uid="uid://bbjtb7m85ur8" path="res://scenes/learn_screen.tscn" id="3_ehpae"]
+[ext_resource type="PackedScene" uid="uid://diifuvv4b74ip" path="res://scenes/practice_screen.tscn" id="4_q7awb"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_wjjd6")
 
 [node name="Screens" parent="." instance=ExtResource("2_0wji4")]
+
+[node name="LearnScreen" parent="." instance=ExtResource("3_ehpae")]
+visible = false
+
+[node name="PracticeScreen" parent="." instance=ExtResource("4_q7awb")]
+visible = false
+
+[connection signal="_learn_button_pressed" from="Screens" to="." method="_on_screens__learn_button_pressed"]
+[connection signal="_practice_button_pressed" from="Screens" to="." method="_on_screens__practice_button_pressed"]
+[connection signal="_reset_button_pressed" from="Screens" to="." method="_on_screens__reset_button_pressed"]
