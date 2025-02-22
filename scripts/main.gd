@@ -51,3 +51,10 @@ func _on_screens__reset_button_pressed():
 	initialiser.delete_save_data()
 	print("Generating new data...")
 	data_resource = initialiser.initialise()
+
+
+func _on_learn_screen__back_button_pressed():
+	# return to main screen
+	update_screen(learn_screen, false)
+	data_resource = learn_screen.data
+	update_screen(title_screen, true)

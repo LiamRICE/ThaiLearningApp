@@ -1,6 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbjtb7m85ur8"]
+[gd_scene load_steps=3 format=3 uid="uid://bbjtb7m85ur8"]
 
 [ext_resource type="Script" path="res://scripts/learn_screen.gd" id="1_f4l3h"]
+[ext_resource type="Theme" uid="uid://dfmm2yx4nxcfu" path="res://assets/base_theme.tres" id="2_jm2al"]
 
 [node name="LearnScreen" type="CanvasLayer"]
 script = ExtResource("1_f4l3h")
+
+[node name="LearningPanel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_jm2al")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LearningPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 500
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LearningPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="TableTitle" type="Label" parent="LearningPanel/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Learn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LearnLettersButton" type="Button" parent="LearningPanel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 5
+text = "Learn New Letters"
+
+[node name="LearnWordsButton" type="Button" parent="LearningPanel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Learn New Words
+(not implemented yet)"
+
+[node name="BackButton" type="Button" parent="LearningPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "back"
+
+[node name="LearningPanelExerciseType1" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LearningPanelExerciseType2" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LearningPanelExerciseType3" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="LearningPanel/VBoxContainer/VBoxContainer/LearnLettersButton" to="." method="_on_learn_letters_button_pressed"]
+[connection signal="pressed" from="LearningPanel/VBoxContainer/VBoxContainer/LearnWordsButton" to="." method="_on_learn_words_button_pressed"]
+[connection signal="pressed" from="LearningPanel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
