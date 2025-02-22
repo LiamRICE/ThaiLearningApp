@@ -14,6 +14,8 @@ func initialise():
 	else:
 		print("Existing data detected")
 		data = loaded_data
+		for d in data.letters:
+			print(d.letter_name)
 	return data
 
 
