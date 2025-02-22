@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://deou67qane2fy"]
+
+[ext_resource type="Script" path="res://scripts/screens.gd" id="1_qgnxt"]
+[ext_resource type="Theme" uid="uid://cjttb3bjbb1c5" path="res://assets/main_theme.tres" id="2_mtu2n"]
+
+[node name="Screens" type="CanvasLayer"]
+script = ExtResource("1_qgnxt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="TitlePanel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/TitlePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -173.0
+offset_top = 14.0
+offset_right = 194.0
+offset_bottom = 72.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 42
+text = "Thai Learning App"
+
+[node name="ContentPanel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 156.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="LearnButton" type="Button" parent="VBoxContainer/ContentPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_mtu2n")
+text = "Learn New Letters"
+
+[node name="PracticeButton" type="Button" parent="VBoxContainer/ContentPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_mtu2n")
+text = "Learn New Letters"
