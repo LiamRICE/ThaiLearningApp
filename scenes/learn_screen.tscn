@@ -8,7 +8,6 @@
 script = ExtResource("1_f4l3h")
 
 [node name="LearningPanel" type="Panel" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,6 +59,7 @@ size_flags_vertical = 4
 text = "back"
 
 [node name="LearningPanelExerciseType1" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -88,7 +88,7 @@ layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="Label" type="Label" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer"]
+[node name="ExerciseLabel" type="Label" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Question"
 horizontal_alignment = 1
@@ -132,7 +132,7 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 48
 text = "Check"
 
-[node name="BackButton" type="Button" parent="LearningPanelExerciseType1/VBoxContainer"]
+[node name="QuitLessonButton" type="Button" parent="LearningPanelExerciseType1/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -158,4 +158,4 @@ grow_vertical = 2
 [connection signal="pressed" from="LearningPanel/VBoxContainer/VBoxContainer/LearnWordsButton" to="." method="_on_learn_words_button_pressed"]
 [connection signal="pressed" from="LearningPanel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="LearningPanelExerciseType1/VBoxContainer/VBoxContainer/CheckContinueButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="LearningPanelExerciseType1/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="LearningPanelExerciseType1/VBoxContainer/QuitLessonButton" to="." method="_on_back_button_pressed"]
