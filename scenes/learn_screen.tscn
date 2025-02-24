@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbjtb7m85ur8"]
+[gd_scene load_steps=4 format=3 uid="uid://bbjtb7m85ur8"]
 
 [ext_resource type="Script" path="res://scripts/learn_screen.gd" id="1_f4l3h"]
 [ext_resource type="Theme" uid="uid://dfmm2yx4nxcfu" path="res://assets/base_theme.tres" id="2_jm2al"]
+[ext_resource type="Theme" uid="uid://cc3p44jk2vv0" path="res://assets/exercise_theme.tres" id="3_x2g6d"]
 
 [node name="LearnScreen" type="CanvasLayer"]
 script = ExtResource("1_f4l3h")
 
 [node name="LearningPanel" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,12 +60,83 @@ size_flags_vertical = 4
 text = "back"
 
 [node name="LearningPanelExerciseType1" type="Panel" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_jm2al")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LearningPanelExerciseType1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 500
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="LearningPanelExerciseType1/VBoxContainer"]
+layout_mode = 2
+text = "Exercise"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LearningPanelExerciseType1/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Question"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_x2g6d")
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="OptionButton1" type="Button" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer/HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+text = "Option1"
+
+[node name="OptionButton2" type="Button" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer/HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+text = "Option2"
+
+[node name="OptionButton3" type="Button" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer/HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+text = "Option3"
+
+[node name="OptionButton4" type="Button" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer/HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+text = "Option4"
+
+[node name="CheckContinueButton" type="Button" parent="LearningPanelExerciseType1/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+text = "Check"
+
+[node name="BackButton" type="Button" parent="LearningPanelExerciseType1/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quit"
 
 [node name="LearningPanelExerciseType2" type="Panel" parent="."]
 visible = false
@@ -84,3 +157,5 @@ grow_vertical = 2
 [connection signal="pressed" from="LearningPanel/VBoxContainer/VBoxContainer/LearnLettersButton" to="." method="_on_learn_letters_button_pressed"]
 [connection signal="pressed" from="LearningPanel/VBoxContainer/VBoxContainer/LearnWordsButton" to="." method="_on_learn_words_button_pressed"]
 [connection signal="pressed" from="LearningPanel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="LearningPanelExerciseType1/VBoxContainer/VBoxContainer/CheckContinueButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="LearningPanelExerciseType1/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

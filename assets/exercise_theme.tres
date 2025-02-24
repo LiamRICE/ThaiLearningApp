@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://cc3p44jk2vv0"]
+
+[resource]
+Button/constants/h_separation = 10
+Button/constants/outline_size = 5
+Button/font_sizes/font_size = 56
