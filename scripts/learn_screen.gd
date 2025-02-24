@@ -16,9 +16,29 @@ signal _back_button_pressed
 @onready var exercise_type_2 = $LearningPanelExerciseType2
 @onready var exercise_type_3 = $LearningPanelExerciseType3
 
+# stages
+enum Stages {
+	MENU = 0,
+	LEARNING_LETTERS = 1,
+	LEARNING_WORDS = 2
+}
+var stage:Stages
+var current_panel:Panel
+
+# set management
+var letter_set:Array[int]
+var letter_confusion:Array[int]
+
 
 func _ready():
 	count = 0
+	stage = Stages.MENU
+	current_panel = main_panel
+
+
+func generate_letters_set():
+	# fetch the indices of the letters for this set
+	pass
 
 
 func switch_screen(source:Panel, destination:Panel):
@@ -32,14 +52,22 @@ func _on_back_button_pressed():
 
 func _on_learn_letters_button_pressed():
 	count = 0
+	stage = Stages.LEARNING_LETTERS
+	next_exercise()
+
+
+func next_exercise():
 	var rand = RandomNumberGenerator.new()
 	var i = rand.randi_range(1, 3)
 	if i==1:
-		switch_screen(main_panel, exercise_type_1)
+		switch_screen(current_panel, exercise_type_1)
+		current_panel = exercise_type_1
 	elif i==2:
-		switch_screen(main_panel, exercise_type_2)
+		switch_screen(current_panel, exercise_type_2)
+		current_panel = exercise_type_2
 	elif i==3:
-		switch_screen(main_panel, exercise_type_3)
+		switch_screen(current_panel, exercise_type_3)
+		current_panel = exercise_type_3
 
 
 func _on_learn_words_button_pressed():
