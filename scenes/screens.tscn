@@ -27,7 +27,7 @@ grow_vertical = 2
 
 [node name="MainContainer" type="VBoxContainer" parent="ContentPanel/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 500
+theme_override_constants/separation = 100
 alignment = 1
 
 [node name="PrimaryContainer" type="VBoxContainer" parent="ContentPanel/MarginContainer/MainContainer"]

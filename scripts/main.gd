@@ -58,3 +58,16 @@ func _on_learn_screen__back_button_pressed():
 	update_screen(learn_screen, false)
 	data_resource = learn_screen.data
 	update_screen(title_screen, true)
+
+
+func _on_practice_screen__back_button_pressed():
+	print("Going back from practice")
+	# return to main screen
+	update_screen(practice_screen, false)
+	data_resource = practice_screen.data
+	update_screen(title_screen, true)
+
+
+func trigger_save(data:DataResource):
+	initialiser.data = data
+	initialiser.save()

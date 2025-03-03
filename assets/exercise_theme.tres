@@ -3,4 +3,4 @@
 [resource]
 Button/constants/h_separation = 10
 Button/constants/outline_size = 5
-Button/font_sizes/font_size = 56
+Button/font_sizes/font_size = 64
