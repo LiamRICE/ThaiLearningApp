@@ -52,7 +52,7 @@ func _ready():
 
 
 func generate_letters_set() -> bool:
-	learning_set = data.get_learning_letter_set(3)
+	learning_set = data.get_letter_set(3, true)
 	if len(learning_set) > 0:
 		return true
 	else:

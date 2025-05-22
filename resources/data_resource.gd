@@ -9,37 +9,97 @@ enum LetterQuestionType {
 @export var letters:Array[LetterResource] = []
 @export var words:Array[WordResource] = []
 
-# Get for learning letters
+
+func scale(x:int, max:int, min:int) -> int:
+	# scale result inversly between 1 and 10
+	var result = 10
+	if (max - min) != 0:
+		result = ((10 - 1) * (x - min)) / (max - min)
+	# safety check
+	if result <= 0:
+		result = 1
+	elif result >= 10:
+		result = 10
+	# reverse probability
+	return 11 - result
+
+
 func get_letter_set(num_letters:int=3, seen:bool=false) -> Array[LetterResource]:
-	var return_list:Array[LetterResource] = []
-	var lowest_priority = 1000
-	var lowest_priority_count = 0
-	var total_unseen = 0
-	for letter in letters:
-		# check counts for all types
-		if not letter.is_seen:
-			total_unseen += 1
-			if letter.priority < lowest_priority:
-				lowest_priority = letter.priority
-				lowest_priority_count = 1
-			elif letter.priority == lowest_priority:
-				lowest_priority_count += 1
-	if total_unseen < num_letters:
-		# return only the unseen letters
-		for letter in letters:
-			if not letter.is_seen:
-				return_list.append(letter)
-	else:
-		var added = 0
-		while added < num_letters:
-			# continue until added the correct number of letters
-			for letter in letters:
-				if added < num_letters and not letter.is_seen and letter.priority == lowest_priority:
-					# add if the letter is not seen, has the lowest priority and if there are not enough letters added
-					added += 1
-					return_list.append(letter)
-			lowest_priority += 1
-	return return_list
+	var set_list:Array[LetterResource] = []
+	var min_priority:int = -1
+	# find lowest priority
+	for item in letters:
+		if item.is_seen == seen and (item.priority < min_priority or min_priority < 0):
+			min_priority = item.priority
+	# cycle through the letters and pick all the ones with lowest priority
+	var min_practiced:int = -1
+	var max_practiced:int = -1
+	var num = 0
+	while num < num_letters:
+		for item in letters:
+			if item.priority <= min_priority and item.is_seen == seen:
+				set_list.append(item)
+				num += 1
+				if item.times_practiced <= min_practiced or min_practiced <= -1:
+					min_practiced = item.times_practiced
+				if item.times_practiced >= max_practiced or max_practiced <= -1:
+					max_practiced = item.times_practiced
+		min_priority += 1
+	# select random number of items based on inverse of times practiced
+	var probabilities:Array[int] = []
+	var total = 0
+	for item in set_list:
+		var value = scale(item.times_practiced, max_practiced, min_practiced)
+		probabilities.append(value)
+		total += value
+	# select num_letters letters
+	var selected:Array[LetterResource] = []
+	var pick = false
+	while len(selected) < num_letters:
+		var random = randi_range(1, total)
+		for i in range(len(probabilities)):
+			if not(pick) and random <= probabilities[i]:
+				selected.append(set_list[i])
+				pick = true
+			else:
+				random -= probabilities[i]
+		pick = false
+	
+	print("Number of letters selected :", len(selected))
+	return selected
+
+
+# Get for learning letters
+#func get_letter_set(num_letters:int=3, seen:bool=false) -> Array[LetterResource]:
+	#var return_list:Array[LetterResource] = []
+	#var lowest_priority = 1000
+	#var lowest_priority_count = 0
+	#var total_unseen = 0
+	#for letter in letters:
+		## check counts for all types
+		#if not letter.is_seen:
+			#total_unseen += 1
+			#if letter.priority < lowest_priority:
+				#lowest_priority = letter.priority
+				#lowest_priority_count = 1
+			#elif letter.priority == lowest_priority:
+				#lowest_priority_count += 1
+	#if total_unseen < num_letters:
+		## return only the unseen letters
+		#for letter in letters:
+			#if not letter.is_seen:
+				#return_list.append(letter)
+	#else:
+		#var added = 0
+		#while added < num_letters:
+			## continue until added the correct number of letters
+			#for letter in letters:
+				#if added < num_letters and not letter.is_seen and letter.priority == lowest_priority:
+					## add if the letter is not seen, has the lowest priority and if there are not enough letters added
+					#added += 1
+					#return_list.append(letter)
+			#lowest_priority += 1
+	#return return_list
 
 
 # Get for practice letters
