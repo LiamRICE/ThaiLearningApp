@@ -1,6 +1,11 @@
-[gd_resource type="Theme" format=3 uid="uid://cc3p44jk2vv0"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cc3p44jk2vv0"]
+
+[ext_resource type="FontFile" uid="uid://bl6oqj6e25cj0" path="res://assets/NotoSerifThai-Black.ttf" id="1_xwyck"]
 
 [resource]
 Button/constants/h_separation = 10
 Button/constants/outline_size = 5
 Button/font_sizes/font_size = 64
+Button/fonts/font = ExtResource("1_xwyck")
+Label/fonts/font = ExtResource("1_xwyck")
+LineEdit/fonts/font = ExtResource("1_xwyck")

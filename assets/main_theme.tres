@@ -1,5 +1,10 @@
-[gd_resource type="Theme" format=3 uid="uid://cjttb3bjbb1c5"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cjttb3bjbb1c5"]
+
+[ext_resource type="FontFile" uid="uid://bl6oqj6e25cj0" path="res://assets/NotoSerifThai-Black.ttf" id="1_eefhx"]
 
 [resource]
 default_base_scale = 2.0
 default_font_size = 32
+Button/fonts/font = ExtResource("1_eefhx")
+Label/fonts/font = ExtResource("1_eefhx")
+TextEdit/fonts/font = ExtResource("1_eefhx")

@@ -1,7 +1,8 @@
 extends Node
 class_name InitialiseData
 
-var save_path := "user://player_data.tres" 
+var save_path_letters := "user://player_data.tres" 
+var save_path_words := "user://player_data_words.tres"
 var data:DataResource
 
 func initialise():
@@ -9,7 +10,8 @@ func initialise():
 	if not loaded_data:
 		data = DataResource.new()
 		print("Data initialised")
-		initialise_data()
+		initialise_data_letters()
+		initialise_data_words()
 		save()
 	else:
 		print("Existing data detected")
@@ -28,24 +30,24 @@ func initialise():
 
 
 func save():
-	ResourceSaver.save(data, save_path)
+	ResourceSaver.save(data, save_path_letters)
 
 
 func check_save() -> Resource:
 	print("Checking save...")
-	var loaded_data = ResourceLoader.load(save_path)
+	var loaded_data = ResourceLoader.load(save_path_letters)
 	print("Loaded data :", loaded_data)
 	return loaded_data
 
 
 func delete_save_data():
 	# delete file path
-	DirAccess.remove_absolute(save_path)
+	DirAccess.remove_absolute(save_path_letters)
 	# empty resource
 	data = null
 
 
-func initialise_data():
+func initialise_data_letters():
 	# definition of full thai letters
 	var thai_letter_resources:Array[LetterResource] = [
 		# consonants
@@ -143,6 +145,8 @@ func initialise_data():
 	
 	# initialise thai data
 	data.letters = thai_letter_resources
+	
+	# view loaded data
 	var num_1 = 0
 	var num_2 = 0
 	var num_3 = 0
@@ -168,3 +172,11 @@ func initialise_data():
 	print("Num priority 4 = ", num_4)
 	# set data resource letters
 	
+
+
+func initialise_data_words():
+	# create list of words to learn
+	var word_list_array = [
+		WordResource.create("กิน", "eat", "kin", data.get_letter_list_from_names(["ก", "◌ิ", "น"]), 1)
+	]
+	data.words = word_list_array

@@ -164,3 +164,18 @@ func get_confusion_letters_no_crossover(num_letters:int, letter:LetterResource, 
 
 func get_word_set(num_words:int=3) -> Array[WordResource]:
 	return []
+
+
+func get_letter_from_name(name:String) -> LetterResource:
+	var ret:LetterResource
+	for let in letters:
+		if let.name == name:
+			ret = let
+	return ret
+
+
+func get_letter_list_from_names(names:Array[String]) -> Array[LetterResource]:
+	var ret:Array[LetterResource]
+	for name in names:
+		ret.append(self.get_letter_from_name(name))
+	return ret
